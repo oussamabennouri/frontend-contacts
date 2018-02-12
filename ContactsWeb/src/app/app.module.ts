@@ -7,6 +7,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import {RouterModule , Routes} from '@angular/router';
 import { AboutComponent } from './about/about.component'
 import { HttpModule } from '@angular/http';
+import { contactsService } from '../services/contacts.service';
 
 const appRoutes: Routes =[
 { path : 'about' , component: AboutComponent },
@@ -26,7 +27,7 @@ pathMatch: 'full'
   imports: [
     BrowserModule ,HttpModule  ,RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [contactsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
