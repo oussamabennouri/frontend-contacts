@@ -10,16 +10,18 @@ import { contactsService } from '../../services/contacts.service';
 export class ContactsComponent implements OnInit {
   pageContacts:any;
   motCle:string="";
-  page:number=0;
-  size:number=1;
+  currentpage:number=1;
+  size:number=5;
+  pages:Array<number>;
   constructor(private http:Http,public contactsservice:contactsService) { }
 
   ngOnInit() {
  }
 doSearch(){
-  this.contactsservice.getContacts(this.motCle,this.page,this.size)
+  this.contactsservice.getContacts(this.motCle,this.currentpage,this.size)
   .subscribe(data=>{
     this.pageContacts=data;
+    this.pages=new Array(data.totalPages);
   }, err=>{
     console.log(err);
   }
@@ -27,6 +29,10 @@ doSearch(){
 }  
 chercher(){
 this.doSearch();
+}
+gotoPage(i:number){
+  this.currentpage=i;
+  this.doSearch();
 }
 }
 
