@@ -2,6 +2,14 @@
   <div class="panel panel-primary">
        <div class="panel-heading">Liste de contacts</div>
        <div class="panel-body">
+         <div class="form-group">
+           <label>Mot clé: </label>
+           <input type="text" [ngModel]="motCle"/>
+           <button class="btn btn-primary" (click)="chercher()">Chercher</button>
+            
+        </div>
+
+
           <div class="row">
               <div class="col-md-4">
                 <div class="panel panel-default">
