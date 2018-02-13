@@ -24,4 +24,8 @@ updateContact(contact:Contact){
     return this.http.put("http://localhost:8080/contacts/"+contact.id,contact)
     .map(resp=>resp.json());
 }
+deleteContact(id:number){
+    return this.http.delete("http://localhost:8080/contacts/"+id)
+    .map(resp=>resp.json());
+}
 }

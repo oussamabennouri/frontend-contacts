@@ -3,6 +3,7 @@ import {Http} from "@angular/http"
 import "rxjs/add/operator/map";
 import { contactsService } from '../../services/contacts.service';
 import { Router } from '@angular/router';
+import { Contact } from '../../model/model.contact';
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
@@ -37,6 +38,22 @@ gotoPage(i:number){
 }
 onEditContact(id:number){
 this.router.navigate(['editContact',id])
+}
+onDeleteContact(c:Contact){
+  let confirm=window.confirm('Est vous sure de vouloir supprimer?');
+  if (confirm==true){
+    this.contactsservice.deleteContact(c.id)
+    .subscribe(data=>{
+      this.pageContacts.content.splice(
+        this.pageContacts.content.indexOf(c),1
+      )
+    }, err=>{
+      console.log(err);
+    }
+    )
+  
+  }
+  
 }
 }
 
